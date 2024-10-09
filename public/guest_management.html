@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manage guests for your event.">
+    <title>Guest Management - Event Planning & Management System</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo.png" alt="Event Planning Logo" width="30" height="30" class="d-inline-block align-text-top">
+                Event Management
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="register.html">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="guest_management.html">Guest Management</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Unsplash Image -->
+    <section id="hero-section" class="hero d-flex align-items-center justify-content-center text-center bg-dark text-light" style="min-height: 50vh; background-size: cover;">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Manage Your Guest List</h1>
+            <p class="lead">Add, remove, and update guests for your event.</p>
+        </div>
+    </section>
+
+    <!-- Guest Management Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Guest List</h2>
+
+            <!-- Table of Guests -->
+            <table class="table table-hover table-bordered" id="guestTable">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Guest Name</th>
+                        <th>Email</th>
+                        <th>RSVP Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>john.doe@example.com</td>
+                        <td>Accepted</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm">Edit</button>
+                            <button class="btn btn-danger btn-sm">Delete</button>
+                        </td>
+                    </tr>
+                    <!-- More rows can be dynamically added here -->
+                </tbody>
+            </table>
+
+            <!-- Add New Guest Form -->
+            <div class="card p-4 mt-5">
+                <h3 class="text-center mb-4">Add New Guest</h3>
+                <form id="guestForm" action="../src/controllers/guestController.php" method="POST">
+                    <input type="hidden" name="action" value="addGuest">
+                    <input type="hidden" name="eventId" value="1"> <!-- Replace '1' with the actual event ID -->
+                
+                    <div class="mb-3">
+                        <label for="guestName" class="form-label">Guest Name</label>
+                        <input type="text" id="guestName" name="guestName" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="guestEmail" class="form-label">Guest Email</label>
+                        <input type="email" id="guestEmail" name="guestEmail" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="rsvpStatus" class="form-label">RSVP Status</label>
+                        <select id="rsvpStatus" name="rsvpStatus" class="form-select" required>
+                            <option value="invited">Invited</option>
+                            <option value="accepted">Accepted</option>
+                            <option value="declined">Declined</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Add Guest</button>
+                </form>
+                
+                 
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white text-center py-3">
+        <p>&copy; 2024 Event Planning & Management System. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Inline JavaScript -->
+    <script>
+        document.getElementById('guestForm').addEventListener('submit', function(event) {
+            const guestName = document.getElementById('guestName').value.trim();
+            const guestEmail = document.getElementById('guestEmail').value.trim();
+            const rsvpStatus = document.getElementById('rsvpStatus').value;
+
+            // Validate that none of the fields are empty
+            if (!guestName || !guestEmail || !rsvpStatus) {
+                event.preventDefault();
+                alert("All fields are required to add a guest.");
+                return;
+            }
+
+            // Additional custom validation (if needed) can be added here
+        });
+
+        // Add functionality for edit and delete buttons dynamically
+        document.querySelectorAll('.btn-danger').forEach(button => {
+            button.addEventListener('click', function() {
+                if (confirm('Are you sure you want to delete this guest?')) {
+                    // Delete the guest (functionality to be implemented)
+                    alert('Guest deleted.');
+                }
+            });
+        });
+
+        document.querySelectorAll('.btn-warning').forEach(button => {
+            button.addEventListener('click', function() {
+                // Edit guest functionality (to be implemented)
+                alert('Edit guest functionality.');
+            });
+        });
+    </script>
+</body>
+</html>

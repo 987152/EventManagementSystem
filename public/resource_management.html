@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manage resources for your events.">
+    <title>Resource Management - Event Planning & Management System</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- JavaScript -->
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo.png" alt="Event Planning Logo" width="30" height="30" class="d-inline-block align-text-top">
+                Event Management
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="register.html">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="resource_management.html">Resource Management</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Unsplash Image -->
+    <section id="hero-section" class="hero d-flex align-items-center justify-content-center text-center bg-dark text-light" style="min-height: 50vh; background-size: cover;">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Manage Your Resources</h1>
+            <p class="lead">Allocate venues, equipment, and staff for your event.</p>
+        </div>
+    </section>
+
+    <!-- Resource Management Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Resource List</h2>
+
+            <!-- Table of Resources -->
+            <table class="table table-hover table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Resource Name</th>
+                        <th>Resource Type</th>
+                        <th>Availability</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Main Hall</td>
+                        <td>Venue</td>
+                        <td>Available</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm">Edit</button>
+                            <button class="btn btn-danger btn-sm">Delete</button>
+                        </td>
+                    </tr>
+                    <!-- More rows can be dynamically added here -->
+                </tbody>
+            </table>
+
+            <!-- Add New Resource Form -->
+            <div class="card p-4 mt-5">
+                <h3 class="text-center mb-4">Add New Resource</h3>
+                <form action="src/controllers/resourceController.php" method="POST">
+                    <div class="mb-3">
+                        <label for="resourceName" class="form-label">Resource Name</label>
+                        <input type="text" id="resourceName" name="resourceName" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="resourceType" class="form-label">Resource Type</label>
+                        <select id="resourceType" name="resourceType" class="form-select" required>
+                            <option value="venue">Venue</option>
+                            <option value="equipment">Equipment</option>
+                            <option value="staff">Staff</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="availability" class="form-label">Availability</label>
+                        <select id="availability" name="availability" class="form-select" required>
+                            <option value="available">Available</option>
+                            <option value="booked">Booked</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Add Resource</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white text-center py-3">
+        <p>&copy; 2024 Event Planning & Management System. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

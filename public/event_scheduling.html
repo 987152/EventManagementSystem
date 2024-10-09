@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Schedule events for your event planning.">
+    <title>Event Scheduling - Event Planning & Management System</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo.png" alt="Event Planning Logo" width="30" height="30" class="d-inline-block align-text-top">
+                Event Management
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="register.html">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="event_scheduling.html">Event Scheduling</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Unsplash Image -->
+    <section id="hero-section" class="hero d-flex align-items-center justify-content-center text-center bg-dark text-light" style="min-height: 50vh; background-size: cover;">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Schedule Your Events</h1>
+            <p class="lead">Plan your events with accurate schedules and timings.</p>
+        </div>
+    </section>
+
+    <!-- Event Scheduling Form -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Schedule a New Event</h2>
+            <div class="card p-4">
+                <form id="eventForm" action="../src/controllers/eventController.php" method="POST">
+                    <input type="hidden" name="action" value="addEvent">
+                    <div class="mb-3">
+                        <label for="eventName" class="form-label">Event Name</label>
+                        <input type="text" id="eventName" name="eventName" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="eventDate" class="form-label">Event Date</label>
+                        <input type="date" id="eventDate" name="eventDate" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="eventTime" class="form-label">Event Time</label>
+                        <input type="time" id="eventTime" name="eventTime" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="eventDescription" class="form-label">Event Description</label>
+                        <textarea id="eventDescription" name="eventDescription" rows="4" class="form-control" placeholder="Describe the event" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Schedule Event</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white text-center py-3">
+        <p>&copy; 2024 Event Planning & Management System. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Inline JavaScript for Form Validation -->
+    <script>
+        document.getElementById('eventForm').addEventListener('submit', function(event) {
+            const eventName = document.getElementById('eventName').value.trim();
+            const eventDate = document.getElementById('eventDate').value;
+            const eventTime = document.getElementById('eventTime').value;
+            const eventDescription = document.getElementById('eventDescription').value.trim();
+
+            // Validate that none of the fields are empty
+            if (!eventName || !eventDate || !eventTime || !eventDescription) {
+                event.preventDefault();
+                alert("All fields are required to schedule an event.");
+                return;
+            }
+
+            // Additional custom validation (if needed) can be added here
+        });
+    </script>
+</body>
+</html>
