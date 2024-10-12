@@ -1,12 +1,10 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
 class Database {
-    private $host = '127.0.0.1';
+    private $host = 'localhost';
     private $db_name = 'event_management';
-    private $username = 'root';
-    private $password = '';
-    private $conn;
+    private $username = 'root'; // Change as needed
+    private $password = '';     // Change as needed
+    public $conn;
 
     public function getConnection() {
         $this->conn = null;
@@ -19,4 +17,3 @@ class Database {
         return $this->conn;
     }
 }
-?>
